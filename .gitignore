@@ -1,11 +1,22 @@
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
+# MacOS
+Thumbs.db
+.DS_Store
 
+# Gradle
+.gradle
+
+# Build
+build/
+target/
+out/
+
+# IntelliJ
 .idea
-*.iws
 *.iml
 *.ipr
-/out/
+*.iws
 
-.DS_Store
+# Eclipse
+.project
+.settings
+.classpath

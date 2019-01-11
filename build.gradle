@@ -4,7 +4,13 @@ buildscript {
 	}
 }
 
-apply plugin: 'java'
+plugins {
+	id "application"
+	id "java"
+	id "idea"
+	id "net.ltgt.apt-idea" version "0.18"
+	id "net.ltgt.apt" version "0.14"
+}
 
 group = 'com.groupbyinc.robyn'
 
@@ -16,5 +22,6 @@ repositories {
 }
 
 dependencies {
-
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
 }
