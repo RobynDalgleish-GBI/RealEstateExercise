@@ -1,15 +1,20 @@
 buildscript {
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
+    }
+    ext {
+        lombokVersion = '1.18.4'
+        jupiterVersion = '5.1.0'
+        assertJVersion = '3.9.0'
+    }
 }
 
 plugins {
-	id "application"
-	id "java"
-	id "idea"
-	id "net.ltgt.apt-idea" version "0.18"
-	id "net.ltgt.apt" version "0.14"
+    id "application"
+    id "java"
+    id "idea"
+    id "net.ltgt.apt-idea" version "0.18"
+    id "net.ltgt.apt" version "0.14"
 }
 
 group = 'com.groupbyinc.robyn'
@@ -18,14 +23,37 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 application {
-	mainClassName = "com.groupbyinc.robyn.exercise.ExerciseApplication"
+    mainClassName = "com.groupbyinc.robyn.exercise.ExerciseApplication"
 }
 
 repositories {
-	mavenCentral()
+    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.18.4'
-	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+	
+    annotationProcessor(
+        "org.projectlombok:lombok:${lombokVersion}",
+    )
+
+    compileOnly(
+        "org.projectlombok:lombok:${lombokVersion}"
+    )
+
+    testImplementation(
+        "org.assertj:assertj-core:${assertJVersion}",
+        "org.junit.jupiter:junit-jupiter-params:${jupiterVersion}"
+    )
+
+    testRuntimeOnly(
+        "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+    )
+}
+
+compileJava.options.compilerArgs += '-parameters'
+compileTestJava.options.compilerArgs += '-parameters'
+
+test {
+    useJUnitPlatform()
 }
