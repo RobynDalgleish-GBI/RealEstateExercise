@@ -6,11 +6,11 @@ public class Listing {
     private final String title;
     private final String description;
 
-    public Listing(String mlsNumber, String title) {
+    Listing(String mlsNumber, String title) {
         this(mlsNumber, title, "");
     }
 
-    public Listing(String mlsNumber, String title, String description) {
+    Listing(String mlsNumber, String title, String description) {
         if (!isValidMlsNumber(mlsNumber)) {
             throw new IllegalArgumentException(mlsNumber + " is not a valid MLS number");
         }
@@ -33,6 +33,6 @@ public class Listing {
 
 
     private boolean isValidMlsNumber(String string) {
-        return string != null && string.matches("^(?=.*[A-Z]{1})(?=.*[0-9]{6})[A-Z0-9]+$");
+        return string != null && string.matches("[A-Z][0-9]{6}");
     }
 }
