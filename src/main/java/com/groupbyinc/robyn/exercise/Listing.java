@@ -1,38 +1,17 @@
 package com.groupbyinc.robyn.exercise;
 
-public class Listing {
+import lombok.Value;
 
-    private final String mlsNumber;
-    private final String title;
-    private final String description;
+import java.util.Objects;
 
-    Listing(String mlsNumber, String title) {
-        this(mlsNumber, title, "");
-    }
+@Value
+class Listing {
 
-    Listing(String mlsNumber, String title, String description) {
-        if (!isValidMlsNumber(mlsNumber)) {
-            throw new IllegalArgumentException(mlsNumber + " is not a valid MLS number");
-        }
-        this.mlsNumber = mlsNumber;
-        this.title = title;
-        this.description = description;
-    }
+    private MlsNumber mlsNumber;
+    private String title;
 
-    public String getMlsNumber() {
-        return mlsNumber;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-
-    private boolean isValidMlsNumber(String string) {
-        return string != null && string.matches("[A-Z][0-9]{6}");
+    Listing(MlsNumber mlsNumber, String title) {
+        this.mlsNumber = Objects.requireNonNull(mlsNumber, "Value must not be null");
+        this.title = Objects.requireNonNull(title, "Value must not be null");
     }
 }
